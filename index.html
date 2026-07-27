@@ -268,6 +268,22 @@ h2 em{font-style:normal;color:var(--glow)}
 
 
 
+
+/* ── safety block: the load-bearing promise ───────────────── */
+.safe{border:1px solid rgba(77,255,90,.28);border-radius:14px;
+  background:radial-gradient(120% 140% at 50% 0%,rgba(77,255,90,.09),transparent 62%),var(--panel);
+  padding:clamp(1.7rem,4vw,2.6rem);margin-top:2rem}
+.safe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.1rem;margin-top:1.6rem}
+.safe-item{display:flex;gap:.75rem;align-items:flex-start}
+.safe-item .tick{flex:none;width:1.5rem;height:1.5rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;
+  color:#04140a;background:var(--glow);box-shadow:0 0 12px rgba(77,255,90,.45)}
+.safe-item h4{font-size:1rem;font-weight:600;margin-bottom:.1rem}
+.safe-item p{font-size:.88rem;color:var(--dim);font-weight:300;line-height:1.5}
+.safe-foot{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--edge);
+  font-size:.9rem;color:var(--dim);font-weight:300}
+.safe-foot b{color:var(--glow-soft);font-weight:600}
+
 /* ── spec strip ───────────────────────────────────────────── */
 
 .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;
@@ -538,6 +554,45 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
 
 
+
+<!-- ══ safety ══ -->
+<section id="safety">
+  <div class="wrap">
+    <div class="kick">Safe by design</div>
+    <h2>Two inert ingredients. <em>Nothing else.</em></h2>
+    <p class="sub">
+      GlowMark Path was formulated to be handed to a child, spread on the ground your dog walks over,
+      and left to break down on its own. That was the design brief, not an afterthought.
+    </p>
+
+    <div class="safe">
+      <div class="safe-grid">
+        <div class="safe-item"><span class="tick">&check;</span>
+          <div><h4>Non-toxic</h4><p>Two inert ingredients and nothing else — no solvents, no dyes,
+          no preservatives, no fuel.</p></div></div>
+        <div class="safe-item"><span class="tick">&check;</span>
+          <div><h4>Safe for children</h4><p>Made to be played with. Mix it into slime, roll it into
+          snow, spread it with bare hands.</p></div></div>
+        <div class="safe-item"><span class="tick">&check;</span>
+          <div><h4>Safe for pets</h4><p>Your dog can walk through it, sniff it, and lie down in it.</p></div></div>
+        <div class="safe-item"><span class="tick">&check;</span>
+          <div><h4>Safe for the environment</h4><p>Nothing in it harms soil, water, or the things
+          living in them.</p></div></div>
+        <div class="safe-item"><span class="tick">&check;</span>
+          <div><h4>Biodegradable</h4><p>It breaks down where it falls. No plastic shell, no spent
+          cartridge, no litter left behind.</p></div></div>
+        <div class="safe-item"><span class="tick">&check;</span>
+          <div><h4>Leaves no permanent mark</h4><p>Temporary by design. The trail fades and the
+          ground is as you found it.</p></div></div>
+      </div>
+      <p class="safe-foot">
+        No batteries, no flame, no heat, nothing to switch on and nothing to burn out.
+        <b>The only thing it needs is daylight.</b>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ══ specs ══ -->
 
 <section>
@@ -644,9 +699,9 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
     <p class="legal">
 
-      GlowMark Path is a temporary trail-marking powder. Full ingredient information appears on the product label. Non-toxic, but may mildly irritate eyes or skin — avoid inhalation and
+      GlowMark Path is a temporary trail-marking powder made from two inert ingredients. Full ingredient information appears on the product label. As with any fine powder, avoid
 
-      ingestion, rinse with water if irritation occurs, and keep away from children under three.
+      breathing airborne dust when applying.
 
       Not for use in National or State Parks or other protected areas. Users are responsible for
 
