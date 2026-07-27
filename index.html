@@ -269,6 +269,14 @@ h2 em{font-style:normal;color:var(--glow)}
 /* ── the decay curve: why "bright 20 min" and "glows all night" ─── */
 
 
+
+.chart-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:720px){
+  .chart-wrap .chart{min-width:620px}
+  .chart-wrap{margin-inline:calc(-1*var(--pad,1rem));padding-inline:var(--pad,1rem)}
+  .film-meta{flex-wrap:wrap}
+  .film-scale{margin-left:0;flex-basis:100%}
+}
 /* ── sped-up decay animation ───────────────────────────── */
 .film{margin:1.9rem 0 .3rem;border:1px solid rgba(77,255,90,.16);border-radius:12px;
   background:#04060b;overflow:hidden}
@@ -603,7 +611,7 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
     </div>
     <p class="sub" style="font-size:.84rem;margin-top:.1rem">Relative brightness at each stage, on a dark background.</p>
 
-    <svg class="chart" viewBox="0 0 980 430" role="img"
+    <div class="chart-wrap"><svg class="chart" viewBox="0 0 980 430" role="img"
      aria-label="Afterglow decay: brightness falls steeply at first, then flattens, staying above the threshold of human vision for twelve to sixteen hours.">
   <defs>
     <filter id="bloom" x="-30%" y="-30%" width="160%" height="160%">
@@ -629,7 +637,7 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
   <text x="78.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">0h</text><text x="187.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">2h</text><text x="297.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">4h</text><text x="406.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">6h</text><text x="516.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">8h</text><text x="625.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">10h</text><text x="735.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">12h</text><text x="844.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">14h</text><text x="954.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">16h</text>
   <text x="20" y="199" fill="#8b9aa8" font-size="12" text-anchor="middle"
         transform="rotate(-90 20 199)">brightness (mcd/m², log scale)</text>
-</svg>
+</svg></div>
     <p class="sub" style="font-size:.84rem;margin-top:.2rem">
       Decay behaviour of strontium&nbsp;aluminate phosphors under <strong>DIN&nbsp;67510</strong>, the
       industry test for glow materials. Shape is illustrative of the pigment class; our own charge-to-dawn
