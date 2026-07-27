@@ -265,6 +265,26 @@ h2 em{font-style:normal;color:var(--glow)}
 
 
 
+
+/* ── the decay curve: why "bright 20 min" and "glows all night" ─── */
+.decay{margin-top:2.2rem;border:1px solid var(--edge);border-radius:12px;background:var(--panel);
+  overflow:hidden}
+.stage{display:flex;gap:1.2rem;align-items:flex-start;padding:1.35rem 1.5rem;
+  border-bottom:1px solid var(--edge)}
+.stage:last-child{border-bottom:0}
+.stage .when{flex:none;width:9rem;font-weight:600;font-size:.95rem;color:var(--glow)}
+.stage .what{flex:1}
+.stage h4{font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.stage p{font-size:.92rem;color:var(--dim);font-weight:300;line-height:1.55}
+.bar{flex:none;width:7rem;height:12px;border-radius:99px;background:#0a1020;
+  border:1px solid var(--edge);overflow:hidden;margin-top:.35rem}
+.bar i{display:block;height:100%;background:var(--glow);box-shadow:0 0 12px var(--glow)}
+@media (max-width:640px){
+  .stage{flex-wrap:wrap;gap:.5rem}
+  .stage .when{width:100%}
+  .bar{width:100%}
+}
+
 /* ── uses grid ────────────────────────────────────────────── */
 
 .uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.3rem;margin-top:2.2rem}
@@ -527,6 +547,56 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
 
 
+
+<!-- ══ how the glow behaves ══ -->
+<section id="glow">
+  <div class="wrap">
+    <div class="kick">How the glow behaves</div>
+    <h2>Brightest at first. <em>Then it never quite stops.</em></h2>
+    <p class="sub">
+      Charge it in direct sun for about half an hour and it does not fade on a timer — it halves,
+      and halves again, each step lasting longer than the one before. That is why it can be
+      genuinely bright for only twenty minutes and still be glowing twelve to sixteen hours later, long after sunrise.
+    </p>
+
+    <div class="decay">
+      <div class="stage">
+        <div class="when">First 20–30 min</div>
+        <div class="bar"><i style="width:100%"></i></div>
+        <div class="what"><h4>Full brightness</h4>
+          <p>A charged lantern lights a radius of roughly 10–15&nbsp;ft around itself — enough to
+             work by, find a zip, or see where you put your boots.</p></div>
+      </div>
+      <div class="stage">
+        <div class="when">After ~30 min</div>
+        <div class="bar"><i style="width:50%"></i></div>
+        <div class="what"><h4>Half as bright</h4>
+          <p>Still a light source, no longer a lamp. You can see it from across the campsite.</p></div>
+      </div>
+      <div class="stage">
+        <div class="when">2–3 hours on</div>
+        <div class="bar"><i style="width:25%"></i></div>
+        <div class="what"><h4>Half again</h4>
+          <p>Now a marker rather than a light. This is the state it holds for most of the night.</p></div>
+      </div>
+      <div class="stage">
+        <div class="when">12–16 hours</div>
+        <div class="bar"><i style="width:11%"></i></div>
+        <div class="what"><h4>Still glowing</h4>
+          <p>Each halving takes longer than the last, so it never simply switches off. A full charge
+             runs <strong style="color:var(--glow-soft);font-weight:600">twelve to sixteen hours</strong>
+             — longer than any night. Open your eyes at three in the morning and it is still clearly
+             visible.</p></div>
+      </div>
+    </div>
+
+    <p class="sub">
+      <strong style="color:var(--glow-soft);font-weight:600">It lights an area for minutes. It stays
+      visible for the whole night.</strong> Both are true, and most products only manage the first.
+    </p>
+  </div>
+</section>
+
 <!-- ══ uses ══ -->
 
 <section>
@@ -559,7 +629,7 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
         <div class="body"><h3>Make a lantern</h3>
 
-          <p>Stir a spoonful into a bottle of water and you have a light with no batteries and no flame. Fully charged it lights a good 10&ndash;15&nbsp;ft around it. <strong style="color:var(--glow-soft);font-weight:600">And it stays mixed &mdash; a year standing still, untouched, with no settling at the bottom.</strong></p></div>
+          <p>Stir a spoonful into a bottle of water and you have a light with no batteries and no flame. Fully charged it lights a radius of about 10&ndash;15&nbsp;ft around itself. <strong style="color:var(--glow-soft);font-weight:600">And it stays mixed &mdash; a year standing still, untouched, with no settling at the bottom.</strong></p></div>
 
       </div>
 
