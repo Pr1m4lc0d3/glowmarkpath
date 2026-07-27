@@ -230,6 +230,19 @@ h2 em{font-style:normal;color:var(--glow)}
 
 
 
+
+/* ── the endings comparison: the real differentiator ──────── */
+.ends{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.2rem;margin-top:2.2rem}
+.end{border:1px solid var(--edge);border-radius:10px;padding:1.5rem 1.4rem;background:var(--panel)}
+.end.win{border-color:rgba(77,255,90,.42);
+  background:radial-gradient(120% 140% at 50% 0%,rgba(77,255,90,.10),transparent 62%),var(--panel)}
+.end h3{font-size:1.05rem;font-weight:600;margin-bottom:.15rem}
+.end .how{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:.7rem}
+.end.win .how{color:var(--glow)}
+.end p{font-size:.94rem;color:var(--dim);font-weight:300;line-height:1.55}
+.end.win p{color:var(--ink)}
+
 /* ── the three steps ──────────────────────────────────────── */
 
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.4rem;margin-top:2.2rem}
@@ -428,9 +441,33 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
     <p class="sub">
 
-      GlowMark Path leaves the route itself lit, behind you, for hours — and then biodegrades.
+      GlowMark Path leaves the route itself lit, behind you, all night — and then biodegrades.
 
     </p>
+
+    <div class="ends">
+      <div class="end">
+        <h3>A glow stick</h3>
+        <div class="how">Ends after one night</div>
+        <p>It is a chemical reaction. It burns itself out, and then it is a piece of plastic
+           you have to carry home.</p>
+      </div>
+      <div class="end">
+        <h3>A flashlight</h3>
+        <div class="how">Ends with the batteries</div>
+        <p>Only as good as the cells inside it. When they die in the dark, you are exactly where
+           you did not want to be.</p>
+      </div>
+      <div class="end win">
+        <h3>GlowMark Path</h3>
+        <div class="how">Doesn&rsquo;t end</div>
+        <p>Daylight recharges it. Use it tonight, leave it in the light tomorrow, use it again —
+           for as long as the sun keeps coming up.</p>
+        <p style="margin-top:.7rem;color:var(--glow-soft);font-weight:600;font-size:.9rem">
+           One of our lanterns has recharged and glowed every day for a year. Nothing has worn out.</p>
+      </div>
+    </div>
+
 
   </div>
 
