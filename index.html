@@ -1,365 +1,718 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Google tag (gtag.js) — INLINE in <head>. Runtime injection makes GA report
-     "code not detected" (learned on ideaforgepro.com). -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-01GG9ZF1L4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-01GG9ZF1L4');
-  /* Kit returns subscribers to /?listed=1 — fire before the script strips it. */
-  if (/[?&]listed=1/.test(location.search)) {
-    gtag('event', 'signup_complete', { method: 'kit' });
-  }
-</script>
-
-<title>GlowMark Path — the world's first illuminated breadcrumb trail</title>
-<meta name="description" content="A biodegradable glow powder that leaves a rechargeable trail of light back to camp. Charges in daylight, glows 6–8 hours. Made in Montana. In development — join the list.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://glowmarkpath.com/">
-<meta property="og:site_name" content="GlowMark Path">
-<meta property="og:title" content="GlowMark Path — the world's first illuminated breadcrumb trail">
-<meta property="og:description" content="Leave yourself a glowing trail back to camp. Biodegradable, rechargeable, no batteries. In development.">
-<meta property="og:image" content="https://glowmarkpath.com/assets/og-card.jpg?1">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="GlowMark Path — a glowing ring and winding lit trail against a night horizon.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GlowMark Path — the world's first illuminated breadcrumb trail">
-<meta name="twitter:description" content="Leave yourself a glowing trail back to camp. Biodegradable, rechargeable, no batteries. In development.">
-<meta name="twitter:image" content="https://glowmarkpath.com/assets/og-card.jpg?1">
-<meta name="theme-color" content="#05070d">
-<link rel="icon" href="/favicon.ico?1" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?1">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-<style>
-/* ─────────────────────────────────────────────────────────────
-   GLOWMARK PATH — night palette. Everything reads as phosphor
-   light against dark ground, because that is literally the product.
-   ───────────────────────────────────────────────────────────── */
-:root{
-  --night:#05070d;
-  --deep:#0a1020;
-  --panel:#0e1526;
-  --edge:#1c2740;
-  --glow:#4dff5a;          /* live phosphor */
-  --glow-soft:#c3fb94;     /* the pale bloom in the logo */
-  --ink:#e9f1e6;
-  --dim:#8b9aa8;
-  --warn:#ffb454;
-  --wrap:1120px;
-  --f:"Outfit",-apple-system,"Segoe UI",Roboto,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--night);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{font-family:var(--f);color:var(--ink);background:var(--night);line-height:1.65;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block;height:auto}
-a{color:inherit}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
-
-/* ── status pill: the honest bit, stated up front ─────────── */
-.status{
-  display:inline-flex;align-items:center;gap:.55rem;
-  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--glow-soft);border:1px solid rgba(77,255,90,.32);
-  background:rgba(77,255,90,.07);border-radius:99px;padding:.42rem 1rem;
-}
-.status .dot{width:7px;height:7px;border-radius:50%;background:var(--glow);
-  box-shadow:0 0 8px var(--glow)}
-
-/* ── masthead ─────────────────────────────────────────────── */
-.mast{position:relative;text-align:center;padding:0 0 8px}
-.mast img{width:100%;max-width:1100px;margin:0 auto}
-.mast .under{padding:6px 22px 34px}
-.lede{
-  font-size:clamp(1.05rem,2.2vw,1.35rem);font-weight:300;color:var(--ink);
-  max-width:46rem;margin:1.3rem auto 1.5rem;
-}
-.lede b{font-weight:600;color:var(--glow-soft)}
-
-/* ── buttons ──────────────────────────────────────────────── */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  font-family:var(--f);font-size:1rem;font-weight:600;
-  padding:.85rem 1.6rem;border-radius:6px;cursor:pointer;text-decoration:none;
-  background:var(--glow);color:#04140a;border:1px solid var(--glow);
-  box-shadow:0 0 22px rgba(77,255,90,.28);
-  transition:box-shadow .18s,transform .18s;
-}
-.btn:hover{box-shadow:0 0 34px rgba(77,255,90,.5);transform:translateY(-1px)}
-.btn--ghost{background:transparent;color:var(--ink);border-color:var(--edge);box-shadow:none}
-.btn--ghost:hover{border-color:var(--glow);color:var(--glow-soft);box-shadow:none}
-
-/* ── full-bleed trail band ────────────────────────────────── */
-.band{position:relative;margin:10px 0 0;border-block:1px solid var(--edge)}
-.band img{width:100%;object-fit:cover;max-height:56vh}
-.band figcaption{
-  position:absolute;left:0;right:0;bottom:0;
-  padding:2.4rem 22px .9rem;
-  background:linear-gradient(transparent,rgba(5,7,13,.92));
-  font-size:.82rem;color:var(--dim);text-align:center;
-}
-
-/* ── sections ─────────────────────────────────────────────── */
-section{padding:clamp(2.6rem,6vw,4.4rem) 0}
-h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;line-height:1.15;letter-spacing:-.01em}
-h2 em{font-style:normal;color:var(--glow)}
-.kick{font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--glow);margin-bottom:.7rem}
-.sub{color:var(--dim);max-width:44rem;margin-top:.9rem;font-weight:300}
-
-/* ── the three steps ──────────────────────────────────────── */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.4rem;margin-top:2.2rem}
-.step{border:1px solid var(--edge);border-radius:10px;padding:1.5rem 1.4rem;background:var(--panel)}
-.step .n{
-  width:2.1rem;height:2.1rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:.95rem;color:var(--glow);
-  border:1px solid rgba(77,255,90,.4);background:rgba(77,255,90,.08);margin-bottom:.9rem;
-}
-.step h3{font-size:1.08rem;font-weight:600;margin-bottom:.35rem}
-.step p{font-size:.95rem;color:var(--dim);font-weight:300}
-
-/* ── uses grid ────────────────────────────────────────────── */
-.uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.3rem;margin-top:2.2rem}
-.use{border:1px solid var(--edge);border-radius:10px;overflow:hidden;background:var(--panel)}
-.use img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.use .body{padding:1.1rem 1.2rem 1.3rem}
-.use h3{font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
-.use p{font-size:.92rem;color:var(--dim);font-weight:300}
-
-/* ── spec strip ───────────────────────────────────────────── */
-.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;
-  background:var(--edge);border:1px solid var(--edge);border-radius:10px;overflow:hidden;margin-top:2rem}
-.spec{background:var(--panel);padding:1.4rem 1.2rem;text-align:center}
-.spec .v{font-size:1.6rem;font-weight:800;color:var(--glow);line-height:1.1}
-.spec .l{font-size:.8rem;color:var(--dim);margin-top:.3rem;font-weight:300}
-
-/* ── signup ───────────────────────────────────────────────── */
-.signup-wrap{border:1px solid var(--edge);border-radius:14px;background:
-  radial-gradient(120% 140% at 50% 0%,rgba(77,255,90,.10),transparent 60%),var(--panel);
-  padding:clamp(1.8rem,4vw,2.8rem);text-align:center;margin-top:2rem}
-.signup{max-width:30rem;margin:1.4rem auto 0}
-.row{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
-.row input{
-  flex:1 1 15rem;min-width:0;font-family:var(--f);font-size:1rem;
-  padding:.85rem 1rem;border-radius:6px;
-  border:1px solid var(--edge);background:#060a14;color:var(--ink);
-}
-.row input:focus{outline:none;border-color:var(--glow)}
-.fine{font-size:.8rem;color:var(--dim);margin-top:1rem;font-weight:300}
-
-/* ── disclaimer ───────────────────────────────────────────── */
-.notice{
-  border:1px solid rgba(255,180,84,.32);background:rgba(255,180,84,.06);
-  border-radius:10px;padding:1.2rem 1.3rem;margin-top:2rem;
-}
-.notice strong{color:var(--warn);display:block;margin-bottom:.35rem;font-weight:600}
-.notice p{font-size:.92rem;color:var(--dim);font-weight:300}
-
-footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
-.foot-in{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between}
-.foot-in img{height:34px;width:auto}
-.legal{font-size:.8rem;color:var(--dim);font-weight:300;max-width:52rem;margin-top:1.2rem;line-height:1.6}
-.legal a{color:var(--glow-soft)}
-</style>
-</head>
-<body>
-
-<!-- ══ masthead ══ -->
-<header class="mast">
-  <img src="assets/masthead.webp" width="1600" height="1067"
-       alt="GlowMark Path — the world's first illuminated breadcrumb trail">
-  <div class="under wrap">
-    <span class="status"><span class="dot"></span>In development · not yet for sale</span>
-    <p class="lede">
-      A biodegradable powder that leaves <b>a trail of light back to camp</b>. Charge it in daylight,
-      scatter it at dusk, and follow it home hours later. No batteries. No flame. Nothing to carry out
-      but the memory.
-    </p>
-    <a class="btn" href="#notify">Tell me when it's ready</a>
-  </div>
-</header>
-
-<!-- ══ the trail ══ -->
-<figure class="band">
-  <img src="assets/trail-banner.webp" width="1900" height="760"
-       alt="A family walking a forest trail at dusk, the path ahead marked with glowing green points of light">
-  <figcaption>Illustration of intended use — real trail photography in progress.</figcaption>
-</figure>
-
-<!-- ══ the problem ══ -->
-<section>
-  <div class="wrap">
-    <div class="kick">The problem</div>
-    <h2>A flashlight shows you <em>where you're looking</em>.<br>It doesn't show you the way back.</h2>
-    <p class="sub">
-      Anyone who has walked back to camp after dark knows the feeling — the trail that was obvious at
-      six o'clock is gone at ten. Glow sticks mark one spot and become litter. Headlamps light a cone
-      in front of you and leave everything behind you black. Reflective markers only work if something
-      is already shining at them.
-    </p>
-    <p class="sub">
-      GlowMark Path leaves the route itself lit, behind you, for hours — and then biodegrades.
-    </p>
-  </div>
-</section>
-
-<!-- ══ how it works ══ -->
-<section>
-  <div class="wrap">
-    <div class="kick">How it works</div>
-    <h2>Three steps, under a minute.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="n">1</div>
-        <h3>Charge it</h3>
-        <p>Daylight does it. Sunlight, or a few minutes under a bright lamp, loads the powder with
-           everything it needs.</p>
-      </div>
-      <div class="step">
-        <div class="n">2</div>
-        <h3>Scatter it</h3>
-        <p>A pinch at each turn, junction, or hazard. One 4&nbsp;oz pouch marks up to 500 feet of route.</p>
-      </div>
-      <div class="step">
-        <div class="n">3</div>
-        <h3>Follow it home</h3>
-        <p>It glows 6–8 hours — long enough for the walk out, the fishing hole, and the walk back.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ uses ══ -->
-<section>
-  <div class="wrap">
-    <div class="kick">More than a trail</div>
-    <h2>One pouch, four different nights.</h2>
-    <p class="sub">Images below illustrate intended uses. We're replacing them with photographs of the real
-       product as we shoot them.</p>
-    <div class="uses">
-      <div class="use">
-        <img src="assets/use-trail.webp" alt="A trail through forest marked with glowing green powder">
-        <div class="body"><h3>Mark the route</h3>
-          <p>Trailheads, junctions, the path back to the tent, the way down to the water.</p></div>
-      </div>
-      <div class="use">
-        <img src="assets/use-lantern.webp" alt="A water bottle glowing green on a picnic table at a campsite">
-        <div class="body"><h3>Make a lantern</h3>
-          <p>Stir a spoonful into a bottle of water and you have a light with no batteries and no flame.</p></div>
-      </div>
-      <div class="use">
-        <img src="assets/use-slime.webp" alt="A glowing green ball held in a hand">
-        <div class="body"><h3>Hand it to the kids</h3>
-          <p>Mixes into glowing slime and putty. Keeps small people busy and visible at the same time.</p></div>
-      </div>
-      <div class="use">
-        <img src="assets/use-snowman.webp" alt="A snowman glowing green at night in a forest clearing">
-        <div class="body"><h3>Play with it</h3>
-          <p>Snow, sand, chalk lines, backyard games. The glow works anywhere you can spread it.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ specs ══ -->
-<section>
-  <div class="wrap">
-    <div class="kick">The pouch</div>
-    <h2>What's in it, and what it does.</h2>
-    <div class="specs">
-      <div class="spec"><div class="v">6–8 hrs</div><div class="l">glow per charge</div></div>
-      <div class="spec"><div class="v">500 ft</div><div class="l">of route per pouch</div></div>
-      <div class="spec"><div class="v">4 oz</div><div class="l">biodegradable pouch</div></div>
-      <div class="spec"><div class="v">$10.99</div><div class="l">planned retail price</div></div>
-    </div>
-    <p class="sub">
-      Strontium aluminate and cornstarch. Non-toxic, no batteries, no flame, nothing to switch on.
-      Blended in Montana.
-    </p>
-
-    <div class="notice">
-      <strong>⚠ Not for use in National or State Parks.</strong>
-      <p>Federal and state regulations prohibit leaving material in protected areas — including
-         biodegradable material. Use GlowMark Path only where leaving temporary markings is permitted,
-         follow all local, state and federal rules, and remove residue when you leave.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ notify ══ -->
-<section id="notify">
-  <div class="wrap">
-    <div class="signup-wrap">
-      <div class="kick">Be first</div>
-      <h2>It works. It isn't for sale yet.</h2>
-      <p class="sub" style="margin-inline:auto">
-        The formula is mixed and tested — there's a glow lantern on the founder's nightstand as you read
-        this. What's left is production, packaging, and getting it into your hands. Leave an address and
-        you'll hear the day that happens.
-      </p>
-
-      <!-- TO GO LIVE ON KIT: put the form's post URL in action=. The field is already
-           named email_address, which is what Kit expects. While action is empty the
-           script below composes a mail instead, so the button is never dead. -->
-      <form class="signup" id="signupForm" method="post" action="">
-        <div class="row">
-          <input id="em" type="email" name="email_address" placeholder="your email" autocomplete="email" required>
-          <button class="btn" type="submit">Notify me</button>
-        </div>
-        <p class="fine">One message when it ships. Nothing else, ever.</p>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-in">
-      <img src="assets/logo.png" alt="GlowMark Path" width="150" height="50">
-      <span style="font-size:.85rem;color:var(--dim)">Made in Montana · © 2026 GlowMark Path</span>
-    </div>
-    <p class="legal">
-      GlowMark Path is a temporary trail-marking powder containing strontium aluminate, cornstarch and
-      sodium cocoyl isethionate. Non-toxic, but may mildly irritate eyes or skin — avoid inhalation and
-      ingestion, rinse with water if irritation occurs, and keep away from children under three.
-      Not for use in National or State Parks or other protected areas. Users are responsible for
-      complying with all local, state and federal regulations and for removing residue from sensitive
-      areas. Glow duration and coverage are based on our own testing and will vary with charge time,
-      light source, weather and surface. Governed by the laws of the State of Montana.
-      Questions: <a href="mailto:hello@glowmarkpath.com">hello@glowmarkpath.com</a>
-    </p>
-  </div>
-</footer>
-
-<script>
-/* Until the Kit form URL is set on action=, submitting composes a mail instead,
-   so the control always does something. Once action is set this steps aside. */
-(function(){
-  var form=document.getElementById('signupForm');
-  if(!form) return;
-  if(/[?&]listed=1\b/.test(location.search)){
-    form.innerHTML='<p style="font-size:1.05rem;color:var(--glow-soft);font-weight:600">You’re on the list.</p>'+
-      '<p class="fine">Look for a note asking you to confirm — answer it and you’re set. '+
-      'We’ll write once, the day it ships.</p>';
-    if(history.replaceState) history.replaceState(null,'',location.pathname);
-  }
-  form.addEventListener('submit',function(e){
-    if(form.getAttribute('action')) return;
-    e.preventDefault();
-    var v=(document.getElementById('em')||{}).value||'';
-    window.location.href='mailto:hello@glowmarkpath.com'
-      +'?subject='+encodeURIComponent('Tell me when GlowMark Path ships')
-      +'&body='+encodeURIComponent('Please let me know when GlowMark Path is available.'
-        +(v.trim()?'\n\nMy address: '+v.trim():''));
-  });
-})();
-</script>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google tag (gtag.js) — INLINE in <head>. Runtime injection makes GA report
+
+     "code not detected" (learned on ideaforgepro.com). -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-01GG9ZF1L4"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-01GG9ZF1L4');
+
+  /* Kit returns subscribers to /?listed=1 — fire before the script strips it. */
+
+  if (/[?&]listed=1/.test(location.search)) {
+
+    gtag('event', 'signup_complete', { method: 'kit' });
+
+  }
+
+</script>
+
+
+
+<title>GlowMark Path — the world's first illuminated breadcrumb trail</title>
+
+<meta name="description" content="A biodegradable glow powder that leaves a rechargeable trail of light back to camp. Charges in daylight, glows 6–8 hours. Made in Montana. In development — join the list.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url" content="https://glowmarkpath.com/">
+
+<meta property="og:site_name" content="GlowMark Path">
+
+<meta property="og:title" content="GlowMark Path — the world's first illuminated breadcrumb trail">
+
+<meta property="og:description" content="Leave yourself a glowing trail back to camp. Biodegradable, rechargeable, no batteries. In development.">
+
+<meta property="og:image" content="https://glowmarkpath.com/assets/og-card.jpg?1">
+
+<meta property="og:image:width" content="1200">
+
+<meta property="og:image:height" content="630">
+
+<meta property="og:image:alt" content="GlowMark Path — a glowing ring and winding lit trail against a night horizon.">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="GlowMark Path — the world's first illuminated breadcrumb trail">
+
+<meta name="twitter:description" content="Leave yourself a glowing trail back to camp. Biodegradable, rechargeable, no batteries. In development.">
+
+<meta name="twitter:image" content="https://glowmarkpath.com/assets/og-card.jpg?1">
+
+<meta name="theme-color" content="#05070d">
+
+<link rel="icon" href="/favicon.ico?1" sizes="any">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?1">
+
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* ─────────────────────────────────────────────────────────────
+
+   GLOWMARK PATH — night palette. Everything reads as phosphor
+
+   light against dark ground, because that is literally the product.
+
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+
+  --night:#05070d;
+
+  --deep:#0a1020;
+
+  --panel:#0e1526;
+
+  --edge:#1c2740;
+
+  --glow:#4dff5a;          /* live phosphor */
+
+  --glow-soft:#c3fb94;     /* the pale bloom in the logo */
+
+  --ink:#e9f1e6;
+
+  --dim:#8b9aa8;
+
+  --warn:#ffb454;
+
+  --wrap:1120px;
+
+  --f:"Outfit",-apple-system,"Segoe UI",Roboto,sans-serif;
+
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{background:var(--night);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+
+body{font-family:var(--f);color:var(--ink);background:var(--night);line-height:1.65;-webkit-font-smoothing:antialiased}
+
+img{max-width:100%;display:block;height:auto}
+
+a{color:inherit}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
+
+
+
+/* ── status pill: the honest bit, stated up front ─────────── */
+
+.status{
+
+  display:inline-flex;align-items:center;gap:.55rem;
+
+  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+
+  color:var(--glow-soft);border:1px solid rgba(77,255,90,.32);
+
+  background:rgba(77,255,90,.07);border-radius:99px;padding:.42rem 1rem;
+
+}
+
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--glow);
+
+  box-shadow:0 0 8px var(--glow)}
+
+
+
+/* ── masthead ─────────────────────────────────────────────── */
+
+.mast{position:relative;text-align:center;padding:0 0 8px}
+
+.mast img{width:100%;max-width:1100px;margin:0 auto}
+
+.mast .under{padding:6px 22px 34px}
+
+.lede{
+
+  font-size:clamp(1.05rem,2.2vw,1.35rem);font-weight:300;color:var(--ink);
+
+  max-width:46rem;margin:1.3rem auto 1.5rem;
+
+}
+
+.lede b{font-weight:600;color:var(--glow-soft)}
+
+
+
+/* ── buttons ──────────────────────────────────────────────── */
+
+.btn{
+
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+
+  font-family:var(--f);font-size:1rem;font-weight:600;
+
+  padding:.85rem 1.6rem;border-radius:6px;cursor:pointer;text-decoration:none;
+
+  background:var(--glow);color:#04140a;border:1px solid var(--glow);
+
+  box-shadow:0 0 22px rgba(77,255,90,.28);
+
+  transition:box-shadow .18s,transform .18s;
+
+}
+
+.btn:hover{box-shadow:0 0 34px rgba(77,255,90,.5);transform:translateY(-1px)}
+
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--edge);box-shadow:none}
+
+.btn--ghost:hover{border-color:var(--glow);color:var(--glow-soft);box-shadow:none}
+
+
+
+/* ── full-bleed trail band ────────────────────────────────── */
+
+.band{position:relative;margin:10px 0 0;border-block:1px solid var(--edge)}
+
+.band img{width:100%;object-fit:cover;max-height:56vh}
+
+.band figcaption{
+
+  position:absolute;left:0;right:0;bottom:0;
+
+  padding:2.4rem 22px .9rem;
+
+  background:linear-gradient(transparent,rgba(5,7,13,.92));
+
+  font-size:.82rem;color:var(--dim);text-align:center;
+
+}
+
+
+
+/* ── sections ─────────────────────────────────────────────── */
+
+section{padding:clamp(2.6rem,6vw,4.4rem) 0}
+
+h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;line-height:1.15;letter-spacing:-.01em}
+
+h2 em{font-style:normal;color:var(--glow)}
+
+.kick{font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--glow);margin-bottom:.7rem}
+
+.sub{color:var(--dim);max-width:44rem;margin-top:.9rem;font-weight:300}
+
+
+
+/* ── the three steps ──────────────────────────────────────── */
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.4rem;margin-top:2.2rem}
+
+.step{border:1px solid var(--edge);border-radius:10px;padding:1.5rem 1.4rem;background:var(--panel)}
+
+.step .n{
+
+  width:2.1rem;height:2.1rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
+
+  font-weight:700;font-size:.95rem;color:var(--glow);
+
+  border:1px solid rgba(77,255,90,.4);background:rgba(77,255,90,.08);margin-bottom:.9rem;
+
+}
+
+.step h3{font-size:1.08rem;font-weight:600;margin-bottom:.35rem}
+
+.step p{font-size:.95rem;color:var(--dim);font-weight:300}
+
+
+
+/* ── uses grid ────────────────────────────────────────────── */
+
+.uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.3rem;margin-top:2.2rem}
+
+.use{border:1px solid var(--edge);border-radius:10px;overflow:hidden;background:var(--panel)}
+
+.use img{width:100%;aspect-ratio:3/2;object-fit:cover}
+
+.use .body{padding:1.1rem 1.2rem 1.3rem}
+
+.use h3{font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
+
+.use p{font-size:.92rem;color:var(--dim);font-weight:300}
+
+
+
+/* ── spec strip ───────────────────────────────────────────── */
+
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;
+
+  background:var(--edge);border:1px solid var(--edge);border-radius:10px;overflow:hidden;margin-top:2rem}
+
+.spec{background:var(--panel);padding:1.4rem 1.2rem;text-align:center}
+
+.spec .v{font-size:1.6rem;font-weight:800;color:var(--glow);line-height:1.1}
+
+.spec .l{font-size:.8rem;color:var(--dim);margin-top:.3rem;font-weight:300}
+
+
+
+/* ── signup ───────────────────────────────────────────────── */
+
+.signup-wrap{border:1px solid var(--edge);border-radius:14px;background:
+
+  radial-gradient(120% 140% at 50% 0%,rgba(77,255,90,.10),transparent 60%),var(--panel);
+
+  padding:clamp(1.8rem,4vw,2.8rem);text-align:center;margin-top:2rem}
+
+.signup{max-width:30rem;margin:1.4rem auto 0}
+
+.row{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+
+.row input{
+
+  flex:1 1 15rem;min-width:0;font-family:var(--f);font-size:1rem;
+
+  padding:.85rem 1rem;border-radius:6px;
+
+  border:1px solid var(--edge);background:#060a14;color:var(--ink);
+
+}
+
+.row input:focus{outline:none;border-color:var(--glow)}
+
+.fine{font-size:.8rem;color:var(--dim);margin-top:1rem;font-weight:300}
+
+
+
+/* ── disclaimer ───────────────────────────────────────────── */
+
+.notice{
+
+  border:1px solid rgba(255,180,84,.32);background:rgba(255,180,84,.06);
+
+  border-radius:10px;padding:1.2rem 1.3rem;margin-top:2rem;
+
+}
+
+.notice strong{color:var(--warn);display:block;margin-bottom:.35rem;font-weight:600}
+
+.notice p{font-size:.92rem;color:var(--dim);font-weight:300}
+
+
+
+footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
+
+.foot-in{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between}
+
+.foot-in img{height:34px;width:auto}
+
+.legal{font-size:.8rem;color:var(--dim);font-weight:300;max-width:52rem;margin-top:1.2rem;line-height:1.6}
+
+.legal a{color:var(--glow-soft)}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- ══ masthead ══ -->
+
+<header class="mast">
+
+  <img src="assets/masthead.webp" width="1600" height="1067"
+
+       alt="GlowMark Path — the world's first illuminated breadcrumb trail">
+
+  <div class="under wrap">
+
+    <span class="status"><span class="dot"></span>In development · not yet for sale</span>
+
+    <p class="lede">
+
+      A biodegradable powder that leaves <b>a trail of light back to camp</b>. Charge it in daylight,
+
+      scatter it at dusk, and follow it home hours later. No batteries. No flame. Nothing to carry out
+
+      but the memory.
+
+    </p>
+
+    <a class="btn" href="#notify">Tell me when it's ready</a>
+
+  </div>
+
+</header>
+
+
+
+<!-- ══ the trail ══ -->
+
+<figure class="band">
+
+  <img src="assets/trail-banner.webp" width="1900" height="760"
+
+       alt="A family walking a forest trail at dusk, the path ahead marked with glowing green points of light">
+
+  <figcaption>Illustration of intended use — real trail photography in progress.</figcaption>
+
+</figure>
+
+
+
+<!-- ══ the problem ══ -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="kick">The problem</div>
+
+    <h2>A flashlight shows you <em>where you're looking</em>.<br>It doesn't show you the way back.</h2>
+
+    <p class="sub">
+
+      Anyone who has walked back to camp after dark knows the feeling — the trail that was obvious at
+
+      six o'clock is gone at ten. Glow sticks mark one spot and become litter. Headlamps light a cone
+
+      in front of you and leave everything behind you black. Reflective markers only work if something
+
+      is already shining at them.
+
+    </p>
+
+    <p class="sub">
+
+      GlowMark Path leaves the route itself lit, behind you, for hours — and then biodegrades.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- ══ how it works ══ -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="kick">How it works</div>
+
+    <h2>Three steps, under a minute.</h2>
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="n">1</div>
+
+        <h3>Charge it</h3>
+
+        <p>Daylight does it. Sunlight, or a few minutes under a bright lamp, loads the powder with
+
+           everything it needs.</p>
+
+      </div>
+
+      <div class="step">
+
+        <div class="n">2</div>
+
+        <h3>Scatter it</h3>
+
+        <p>A pinch at each turn, junction, or hazard. One 4&nbsp;oz pouch marks up to 500 feet of route.</p>
+
+      </div>
+
+      <div class="step">
+
+        <div class="n">3</div>
+
+        <h3>Follow it home</h3>
+
+        <p>It glows 6–8 hours — long enough for the walk out, the fishing hole, and the walk back.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ══ uses ══ -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="kick">More than a trail</div>
+
+    <h2>One pouch, four different nights.</h2>
+
+    <p class="sub">Images below illustrate intended uses. We're replacing them with photographs of the real
+
+       product as we shoot them.</p>
+
+    <div class="uses">
+
+      <div class="use">
+
+        <img src="assets/use-trail.webp" alt="A trail through forest marked with glowing green powder">
+
+        <div class="body"><h3>Mark the route</h3>
+
+          <p>Trailheads, junctions, the path back to the tent, the way down to the water.</p></div>
+
+      </div>
+
+      <div class="use">
+
+        <img src="assets/use-lantern.webp" alt="A water bottle glowing green on a picnic table at a campsite">
+
+        <div class="body"><h3>Make a lantern</h3>
+
+          <p>Stir a spoonful into a bottle of water and you have a light with no batteries and no flame.</p></div>
+
+      </div>
+
+      <div class="use">
+
+        <img src="assets/use-slime.webp" alt="A glowing green ball held in a hand">
+
+        <div class="body"><h3>Hand it to the kids</h3>
+
+          <p>Mixes into glowing slime and putty. Keeps small people busy and visible at the same time.</p></div>
+
+      </div>
+
+      <div class="use">
+
+        <img src="assets/use-snowman.webp" alt="A snowman glowing green at night in a forest clearing">
+
+        <div class="body"><h3>Play with it</h3>
+
+          <p>Snow, sand, chalk lines, backyard games. The glow works anywhere you can spread it.</p></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ══ specs ══ -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="kick">The pouch</div>
+
+    <h2>What one pouch does.</h2>
+
+    <div class="specs">
+
+      <div class="spec"><div class="v">6–8 hrs</div><div class="l">glow per charge</div></div>
+
+      <div class="spec"><div class="v">500 ft</div><div class="l">of route per pouch</div></div>
+
+      <div class="spec"><div class="v">4 oz</div><div class="l">biodegradable pouch</div></div>
+
+      <div class="spec"><div class="v">$10.99</div><div class="l">planned retail price</div></div>
+
+    </div>
+
+    <p class="sub">
+
+      Non-toxic and biodegradable. No batteries, no flame, nothing to switch on — daylight is the only thing it needs. Blended in Montana.</p>
+
+
+
+    <div class="notice">
+
+      <strong>⚠ Not for use in National or State Parks.</strong>
+
+      <p>Federal and state regulations prohibit leaving material in protected areas — including
+
+         biodegradable material. Use GlowMark Path only where leaving temporary markings is permitted,
+
+         follow all local, state and federal rules, and remove residue when you leave.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ══ notify ══ -->
+
+<section id="notify">
+
+  <div class="wrap">
+
+    <div class="signup-wrap">
+
+      <div class="kick">Be first</div>
+
+      <h2>It works. It isn't for sale yet.</h2>
+
+      <p class="sub" style="margin-inline:auto">
+
+        The formula is mixed and tested. What is left is production, packaging, and getting it into your hands. Leave an address and you will hear the day that happens.</p>
+
+
+
+      <!-- TO GO LIVE ON KIT: put the form's post URL in action=. The field is already
+
+           named email_address, which is what Kit expects. While action is empty the
+
+           script below composes a mail instead, so the button is never dead. -->
+
+      <form class="signup" id="signupForm" method="post" action="">
+
+        <div class="row">
+
+          <input id="em" type="email" name="email_address" placeholder="your email" autocomplete="email" required>
+
+          <button class="btn" type="submit">Notify me</button>
+
+        </div>
+
+        <p class="fine">One message when it ships. Nothing else, ever.</p>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="foot-in">
+
+      <img src="assets/logo.png" alt="GlowMark Path" width="150" height="50">
+
+      <span style="font-size:.85rem;color:var(--dim)">Made in Montana · © 2026 GlowMark Path</span>
+
+    </div>
+
+    <p class="legal">
+
+      GlowMark Path is a temporary trail-marking powder. Full ingredient information appears on the product label. Non-toxic, but may mildly irritate eyes or skin — avoid inhalation and
+
+      ingestion, rinse with water if irritation occurs, and keep away from children under three.
+
+      Not for use in National or State Parks or other protected areas. Users are responsible for
+
+      complying with all local, state and federal regulations and for removing residue from sensitive
+
+      areas. Glow duration and coverage are based on our own testing and will vary with charge time,
+
+      light source, weather and surface. Governed by the laws of the State of Montana.
+
+      Questions: <a href="mailto:hello@glowmarkpath.com">hello@glowmarkpath.com</a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+
+<script>
+
+/* Until the Kit form URL is set on action=, submitting composes a mail instead,
+
+   so the control always does something. Once action is set this steps aside. */
+
+(function(){
+
+  var form=document.getElementById('signupForm');
+
+  if(!form) return;
+
+  if(/[?&]listed=1\b/.test(location.search)){
+
+    form.innerHTML='<p style="font-size:1.05rem;color:var(--glow-soft);font-weight:600">You’re on the list.</p>'+
+
+      '<p class="fine">Look for a note asking you to confirm — answer it and you’re set. '+
+
+      'We’ll write once, the day it ships.</p>';
+
+    if(history.replaceState) history.replaceState(null,'',location.pathname);
+
+  }
+
+  form.addEventListener('submit',function(e){
+
+    if(form.getAttribute('action')) return;
+
+    e.preventDefault();
+
+    var v=(document.getElementById('em')||{}).value||'';
+
+    window.location.href='mailto:hello@glowmarkpath.com'
+
+      +'?subject='+encodeURIComponent('Tell me when GlowMark Path ships')
+
+      +'&body='+encodeURIComponent('Please let me know when GlowMark Path is available.'
+
+        +(v.trim()?'\n\nMy address: '+v.trim():''));
+
+  });
+
+})();
+
+</script>
+
+</body>
+
+</html>
+
