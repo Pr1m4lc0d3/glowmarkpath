@@ -267,6 +267,28 @@ h2 em{font-style:normal;color:var(--glow)}
 
 
 /* ── the decay curve: why "bright 20 min" and "glows all night" ─── */
+
+
+/* ── sped-up decay animation ───────────────────────────── */
+.film{margin:1.9rem 0 .3rem;border:1px solid rgba(77,255,90,.16);border-radius:12px;
+  background:#04060b;overflow:hidden}
+.film-night{position:relative;height:132px;display:flex;align-items:center;justify-content:center}
+.film-bar{width:72%;height:13px;border-radius:7px;background:#0a1410;will-change:box-shadow,background}
+.film-meta{display:flex;align-items:baseline;gap:.85rem;padding:.55rem .95rem .7rem;
+  border-top:1px solid rgba(77,255,90,.1)}
+.film-clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.02rem;color:var(--glow);
+  min-width:4.6rem;letter-spacing:.01em}
+.film-note{font-size:.83rem;color:var(--dim);font-weight:300}
+.film-scale{margin-left:auto;font-size:.7rem;color:var(--dim);font-weight:300;opacity:.75}
+@media (prefers-reduced-motion:reduce){.film-night{height:110px}}
+/* ── brightness strip: shows what each stage looks like ──── */
+.lume{display:flex;gap:.5rem;margin:1.6rem 0 .3rem;flex-wrap:wrap}
+.lume .cell{flex:1 1 5.5rem;text-align:center}
+.lume .orb{width:100%;aspect-ratio:1;max-width:5rem;margin:0 auto .55rem;border-radius:50%;
+  background:#070c16;display:block}
+.lume .t{font-size:.78rem;font-weight:600;color:var(--ink)}
+.lume .b{font-size:.7rem;color:var(--dim);font-weight:300}
+.chart{width:100%;height:auto;display:block;margin:1.8rem 0 .4rem}
 .decay{margin-top:2.2rem;border:1px solid var(--edge);border-radius:12px;background:var(--panel);
   overflow:hidden}
 .stage{display:flex;gap:1.2rem;align-items:flex-start;padding:1.35rem 1.5rem;
@@ -557,6 +579,61 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
       Charge it in direct sun for about half an hour and it does not fade on a timer — it halves,
       and halves again, each step lasting longer than the one before. That is why it can be
       genuinely bright for only twenty minutes and still be glowing twelve to sixteen hours later, long after sunrise.
+    </p>
+
+
+
+
+    <div class="film" aria-hidden="true">
+      <div class="film-night"><div class="film-bar" id="filmBar"></div></div>
+      <div class="film-meta">
+        <span class="film-clock" id="filmClock">0h 00m</span>
+        <span class="film-note" id="filmNote">full charge</span>
+        <span class="film-scale">one night, sped up</span>
+      </div>
+    </div>
+
+    <div class="lume" aria-hidden="true">
+      <div class="cell"><span class="orb" style="background:#dbffd4;box-shadow:0 0 46px 16px rgba(77,255,90,.95),0 0 90px 30px rgba(77,255,90,.45)"></span><div class="t">20 min</div><div class="b">lights the ground</div></div>
+      <div class="cell"><span class="orb" style="background:#8dfd8a;box-shadow:0 0 30px 9px rgba(77,255,90,.62),0 0 60px 18px rgba(77,255,90,.22)"></span><div class="t">1 hour</div><div class="b">still a lamp</div></div>
+      <div class="cell"><span class="orb" style="background:#4ee055;box-shadow:0 0 18px 5px rgba(77,255,90,.36)"></span><div class="t">4 hours</div><div class="b">a clear marker</div></div>
+      <div class="cell"><span class="orb" style="background:#2f9137;box-shadow:0 0 11px 3px rgba(77,255,90,.20)"></span><div class="t">8 hours</div><div class="b">easy to follow</div></div>
+      <div class="cell"><span class="orb" style="background:#1d5c24;box-shadow:0 0 7px 2px rgba(77,255,90,.12)"></span><div class="t">12 hours</div><div class="b">faint but there</div></div>
+      <div class="cell"><span class="orb" style="background:#12381a;box-shadow:0 0 4px 1px rgba(77,255,90,.07)"></span><div class="t">16 hours</div><div class="b">edge of visible</div></div>
+    </div>
+    <p class="sub" style="font-size:.84rem;margin-top:.1rem">Relative brightness at each stage, on a dark background.</p>
+
+    <svg class="chart" viewBox="0 0 980 430" role="img"
+     aria-label="Afterglow decay: brightness falls steeply at first, then flattens, staying above the threshold of human vision for twelve to sixteen hours.">
+  <defs>
+    <filter id="bloom" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#eaffe6"/><stop offset=".08" stop-color="#4dff5a"/>
+      <stop offset=".55" stop-color="#2f9c39"/><stop offset="1" stop-color="#1d5a24"/>
+    </linearGradient>
+    <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#4dff5a" stop-opacity=".30"/>
+    <stop offset="1" stop-color="#4dff5a" stop-opacity="0"/></linearGradient></defs>
+  <line x1="78" y1="26.0" x2="954" y2="26.0" stroke="#1c2740" stroke-width="1"/><text x="69" y="30.0" fill="#8b9aa8" font-size="12" text-anchor="end">100k</text><line x1="78" y1="83.7" x2="954" y2="83.7" stroke="#1c2740" stroke-width="1"/><text x="69" y="87.7" fill="#8b9aa8" font-size="12" text-anchor="end">10k</text><line x1="78" y1="141.3" x2="954" y2="141.3" stroke="#1c2740" stroke-width="1"/><text x="69" y="145.3" fill="#8b9aa8" font-size="12" text-anchor="end">1k</text><line x1="78" y1="199.0" x2="954" y2="199.0" stroke="#1c2740" stroke-width="1"/><text x="69" y="203.0" fill="#8b9aa8" font-size="12" text-anchor="end">100</text><line x1="78" y1="256.7" x2="954" y2="256.7" stroke="#1c2740" stroke-width="1"/><text x="69" y="260.7" fill="#8b9aa8" font-size="12" text-anchor="end">10</text><line x1="78" y1="314.3" x2="954" y2="314.3" stroke="#1c2740" stroke-width="1"/><text x="69" y="318.3" fill="#8b9aa8" font-size="12" text-anchor="end">1</text><line x1="78" y1="372.0" x2="954" y2="372.0" stroke="#1c2740" stroke-width="1"/><text x="69" y="376.0" fill="#8b9aa8" font-size="12" text-anchor="end">0.1</text>
+  <line x1="78" y1="344.5" x2="954" y2="344.5" stroke="#ffb454" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="954" y="335.5" fill="#ffb454" font-size="12.5" text-anchor="end">0.3 mcd/m² — limit of human vision in darkness</text>
+  <path d="M78.0,56.2 L87.3,150.3 L132.8,196.6 L187.5,214.0 L297.0,233.7 L406.5,246.5 L516.0,262.3 L625.5,286.8 L735.0,314.3 L844.5,334.3 L954.0,344.5 L954.0,372 L78,372 Z" fill="url(#gg)"/>
+  <path d="M78.0,56.2 L87.3,150.3 L132.8,196.6 L187.5,214.0 L297.0,233.7 L406.5,246.5 L516.0,262.3 L625.5,286.8 L735.0,314.3 L844.5,334.3 L954.0,344.5" fill="none" stroke="url(#fade)" stroke-width="3.5" stroke-linejoin="round" filter="url(#bloom)"/>
+  <circle cx="87.3" cy="150.3" r="4" fill="#4dff5a"/><circle cx="132.8" cy="196.6" r="4" fill="#4dff5a"/><circle cx="516.0" cy="262.3" r="4" fill="#4dff5a"/><circle cx="954.0" cy="344.5" r="4" fill="#4dff5a"/>
+  <text x="97" y="142" fill="#c3fb94" font-size="13">10 min</text>
+  <text x="143" y="189" fill="#c3fb94" font-size="13">1 hr</text>
+  <text x="516" y="250" fill="#c3fb94" font-size="13" text-anchor="middle">8 hr</text>
+  <text x="78.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">0h</text><text x="187.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">2h</text><text x="297.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">4h</text><text x="406.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">6h</text><text x="516.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">8h</text><text x="625.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">10h</text><text x="735.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">12h</text><text x="844.5" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">14h</text><text x="954.0" y="394" fill="#8b9aa8" font-size="12" text-anchor="middle">16h</text>
+  <text x="20" y="199" fill="#8b9aa8" font-size="12" text-anchor="middle"
+        transform="rotate(-90 20 199)">brightness (mcd/m², log scale)</text>
+</svg>
+    <p class="sub" style="font-size:.84rem;margin-top:.2rem">
+      Decay behaviour of strontium&nbsp;aluminate phosphors under <strong>DIN&nbsp;67510</strong>, the
+      industry test for glow materials. Shape is illustrative of the pigment class; our own charge-to-dawn
+      figure comes from a year of use, not a lab.
     </p>
 
     <div class="decay">
@@ -874,6 +951,63 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
 </script>
 
+
+<script>
+(function(){
+  var bar=document.getElementById('filmBar'),clk=document.getElementById('filmClock'),
+      note=document.getElementById('filmNote');
+  if(!bar) return;
+  // (hours, mcd/m2) — same anchors as the chart above
+  var A=[[0,30000],[0.17,700],[1,110],[2,55],[4,25],[6,15],[8,8],[10,3],[12,1.0],[14,.45],[16,.3]];
+  var LO=Math.log10(0.3), HI=Math.log10(30000);
+  function mcd(h){
+    if(h<=0) return A[0][1];
+    for(var i=1;i<A.length;i++){ if(h<=A[i][0]){
+      var a=A[i-1],b=A[i],f=(h-a[0])/(b[0]-a[0]);
+      return Math.pow(10, Math.log10(a[1])+f*(Math.log10(b[1])-Math.log10(a[1])));
+    }}
+    return A[A.length-1][1];
+  }
+  // log-domain -> 0..1 visual scale (Weber-Fechner: perception tracks log luminance)
+  function vis(h){ return Math.max(0,Math.min(1,(Math.log10(mcd(h))-LO)/(HI-LO))); }
+  function label(h){
+    if(h<0.34) return 'full charge — lights the ground';
+    if(h<1.2)  return 'halved — still a lamp';
+    if(h<4)    return 'halved again — a clear marker';
+    if(h<9)    return 'midnight — easy to follow';
+    if(h<13)   return 'faint, and still going';
+    return 'sunrise — edge of visible';
+  }
+  function paint(h){
+    var v=vis(h), s=Math.pow(v,1.25);
+    bar.style.background='rgb('+Math.round(10+215*s)+','+Math.round(20+235*s)+','+Math.round(16+120*s)+')';
+    bar.style.boxShadow='0 0 '+(10+62*s).toFixed(1)+'px '+(2+20*s).toFixed(1)+'px rgba(77,255,90,'+(0.05+0.9*s).toFixed(3)+'), '
+                       +'0 0 '+(20+130*s).toFixed(1)+'px '+(4+40*s).toFixed(1)+'px rgba(77,255,90,'+(0.02+0.4*s).toFixed(3)+')';
+    var hh=Math.floor(h), mm=Math.floor((h-hh)*60);
+    clk.textContent=hh+'h '+(mm<10?'0':'')+mm+'m';
+    note.textContent=label(h);
+  }
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches){ paint(2); return; }
+  var RUN=15000, HOLD=1400, t0=null, io=null, live=true;
+  function frame(ts){
+    if(t0===null) t0=ts;
+    var e=ts-t0;
+    if(e>RUN+HOLD){ t0=ts; e=0; }
+    paint(Math.min(16, e/RUN*16));
+    if(live) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  if('IntersectionObserver' in window){
+    io=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(en.isIntersecting && !live){ live=true; t0=null; requestAnimationFrame(frame); }
+        else if(!en.isIntersecting){ live=false; }
+      });
+    },{threshold:0});
+    io.observe(document.querySelector('.film'));
+  }
+})();
+</script>
 </body>
 
 </html>
