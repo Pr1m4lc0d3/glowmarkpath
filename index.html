@@ -281,6 +281,19 @@ h2 em{font-style:normal;color:var(--glow)}
   .film-meta{flex-wrap:wrap}
   .film-scale{margin-left:0;flex-basis:100%}
 }
+
+/* ── repeated call to action ───────────────────────
+   TO SELL: change every href="#notify" on a .cta-btn to the checkout URL and swap
+   the label. All six blocks use identical markup for exactly that reason. */
+.cta{display:flex;align-items:center;justify-content:center;gap:1.1rem 1.4rem;
+  flex-wrap:wrap;margin:2.6rem 0 .2rem;padding-top:2rem;
+  border-top:1px solid rgba(77,255,90,.12)}
+.cta-line{font-size:1.02rem;color:var(--ink);font-weight:400;margin:0;text-align:center}
+.cta-line b{color:var(--glow-soft);font-weight:600}
+.cta .btn{white-space:nowrap}
+.cta-fine{flex-basis:100%;text-align:center;font-size:.78rem;color:var(--dim);
+  font-weight:300;margin:-.35rem 0 0}
+@media (max-width:640px){ .cta{flex-direction:column;gap:.95rem} .cta-line{font-size:.97rem} }
 /* ── sped-up decay animation ───────────────────────────── */
 .film{margin:1.9rem 0 .3rem;border:1px solid rgba(77,255,90,.16);border-radius:12px;
   background:#04060b;overflow:hidden}
@@ -523,6 +536,11 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
     </div>
 
 
+      <div class="cta">
+        <p class="cta-line">It does not exist as a product yet — but it will. <b>Be told the day it does.</b></p>
+        <a class="btn cta-btn" href="#notify">Tell me when it ships</a>
+        <p class="cta-fine">One message the day it ships. Nothing else, ever.</p>
+      </div>
   </div>
 
 </section>
@@ -575,6 +593,11 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
     </div>
 
+      <div class="cta">
+        <p class="cta-line">That is the whole method. <b>No batteries, no flame, nothing to run out.</b></p>
+        <a class="btn cta-btn" href="#notify">Tell me when it ships</a>
+        <p class="cta-fine">One message the day it ships. Nothing else, ever.</p>
+      </div>
   </div>
 
 </section>
@@ -753,6 +776,11 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
       <strong style="color:var(--glow-soft);font-weight:600">It lights an area for minutes. It stays
       visible for the whole night.</strong> Both are true, and most products only manage the first.
     </p>
+      <div class="cta">
+        <p class="cta-line">Bright when you need it, still there at dawn. <b>Get word when it ships.</b></p>
+        <a class="btn cta-btn" href="#notify">Tell me when it ships</a>
+        <p class="cta-fine">One message the day it ships. Nothing else, ever.</p>
+      </div>
   </div>
 </section>
 
@@ -814,6 +842,11 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
     </div>
 
+      <div class="cta">
+        <p class="cta-line">One pouch, and every one of those nights. <b>Put your name down.</b></p>
+        <a class="btn cta-btn" href="#notify">Tell me when it ships</a>
+        <p class="cta-fine">One message the day it ships. Nothing else, ever.</p>
+      </div>
   </div>
 
 </section>
@@ -856,6 +889,11 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
         <b>The only thing it needs is daylight.</b>
       </p>
     </div>
+      <div class="cta">
+        <p class="cta-line">Safe around children, pets and the ground you walk on. <b>Hear about it first.</b></p>
+        <a class="btn cta-btn" href="#notify">Tell me when it ships</a>
+        <p class="cta-fine">One message the day it ships. Nothing else, ever.</p>
+      </div>
   </div>
 </section>
 
@@ -899,6 +937,11 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
     </div>
 
+      <div class="cta">
+        <p class="cta-line">That is what a single pouch does. <b>Be first in line.</b></p>
+        <a class="btn cta-btn" href="#notify">Tell me when it ships</a>
+        <p class="cta-fine">One message the day it ships. Nothing else, ever.</p>
+      </div>
   </div>
 
 </section>
@@ -1088,6 +1131,21 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
     },{threshold:0});
     io.observe(document.querySelector('.film'));
   }
+})();
+</script>
+
+<script>
+/* CTA buttons: land the visitor in the field, not merely near it. The href="#notify"
+   works on its own if this never runs. */
+(function(){
+  document.querySelectorAll('a.cta-btn').forEach(function(a){
+    a.addEventListener('click',function(){
+      setTimeout(function(){
+        var em=document.getElementById('em');
+        if(em && window.matchMedia('(min-width:641px)').matches) em.focus({preventScroll:true});
+      },620);
+    });
+  });
 })();
 </script>
 </body>
