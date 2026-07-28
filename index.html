@@ -961,13 +961,19 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
 
 
 
-      <!-- TO GO LIVE ON KIT: put the form's post URL in action=. The field is already
+      <!-- LIVE ON KIT since 2026-07-28. Form 9738003 "GlowMark Path waitlist",
 
-           named email_address, which is what Kit expects. While action is empty the
+           separate from Madame Whisper (9730404) and StealthFyre (9737030) so the
 
-           script below composes a mail instead, so the button is never dead. -->
+           lists stay clean. Kit is set to redirect to /?listed=1 on success, which
 
-      <form class="signup" id="signupForm" method="post" action="">
+           is what fires signup_complete in the GA snippet and swaps in the success
+
+           copy below. Because action= is now set, the mailto fallback stands aside
+
+           on its own — see the submit handler further down. -->
+
+      <form class="signup" id="signupForm" method="post" action="https://app.kit.com/forms/9738003/subscriptions">
 
         <div class="row">
 
