@@ -278,8 +278,6 @@ h2 em{font-style:normal;color:var(--glow)}
 @media (max-width:720px){
   .chart-wrap .chart{min-width:620px}
   .chart-wrap{margin-inline:calc(-1*var(--pad,1rem));padding-inline:var(--pad,1rem)}
-  .film-meta{flex-wrap:wrap}
-  .film-scale{margin-left:0;flex-basis:100%}
 }
 
 /* ── repeated call to action ───────────────────────
@@ -299,12 +297,12 @@ h2 em{font-style:normal;color:var(--glow)}
   background:#04060b;overflow:hidden}
 .film-night{position:relative;height:132px;display:flex;align-items:center;justify-content:center}
 .film-bar{width:72%;height:13px;border-radius:7px;background:#0a1410;will-change:box-shadow,background}
-.film-meta{display:flex;align-items:baseline;gap:.85rem;padding:.55rem .95rem .7rem;
-  border-top:1px solid rgba(77,255,90,.1)}
-.film-clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.02rem;color:var(--glow);
-  min-width:4.6rem;letter-spacing:.01em}
-.film-note{font-size:.83rem;color:var(--dim);font-weight:300}
-.film-scale{margin-left:auto;font-size:.7rem;color:var(--dim);font-weight:300;opacity:.75}
+.film-meta{display:flex;flex-direction:column;align-items:center;gap:.16rem;
+  padding:.6rem .95rem .78rem;border-top:1px solid rgba(77,255,90,.1);text-align:center}
+.film-clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.14rem;color:var(--glow);
+  letter-spacing:.01em;line-height:1.25}
+.film-note{font-size:.84rem;color:var(--dim);font-weight:300;line-height:1.3}
+.film-scale{font-size:.7rem;color:var(--dim);font-weight:300;opacity:.75}
 @media (prefers-reduced-motion:reduce){.film-night{height:110px}}
 /* ── brightness strip: shows what each stage looks like ──── */
 .lume{display:flex;gap:.5rem;margin:1.6rem 0 .3rem;flex-wrap:wrap}
@@ -625,7 +623,7 @@ footer{border-top:1px solid var(--edge);margin-top:3rem;padding:2.2rem 0 3rem}
       <div class="film-meta">
         <span class="film-clock" id="filmClock">0h 00m</span>
         <span class="film-note" id="filmNote">full charge</span>
-        <span class="film-scale">one night, sped up</span>
+        <span class="film-scale">* one night, sped up</span>
       </div>
     </div>
 
